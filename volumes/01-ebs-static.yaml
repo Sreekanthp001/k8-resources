@@ -26,10 +26,10 @@ spec:
     requests:
       storage: 15Gi
 ---
-apiVersion: v1 
-kind: Pod 
+apiVersion: v1
+kind: Pod
 metadata:
-  name: nginx 
+  name: nginx
   labels:
     purpose: ebs-static-demo
     project: roboshop
@@ -44,5 +44,5 @@ spec:
       mountPath: /usr/share/nginx/html
   volumes:
   - name: persistent-storage
-    PersistentVolumeClaim:
+    persistentVolumeClaim:
       claimName: ebs-static
