@@ -9,14 +9,14 @@ spec:
   resources:
     requests:
       storage: 5Gi
---- 
+---
 apiVersion: v1
-kind: Pod 
+kind: Pod
 metadata:
-  name: nginx 
+  name: nginx
   labels:
     purpose: efs-dynamic-demo
-    project: roboshop 
+    project: roboshop
 spec:
   containers:
   - name: nginx
@@ -24,24 +24,24 @@ spec:
     volumeMounts: # docker run -v host-path:container-path
     - name: persistent-storage
       mountPath: /usr/share/nginx/html
-  volumes: 
+  volumes:
   - name: persistent-storage
-    PersistentVolumeClaim:
+    persistentVolumeClaim:
       claimName: efs-dynamic
 ---
 apiVersion: v1
-kind: Service 
+kind: Service
 metadata:
   name: efs-dynamic
   labels:
     purpose: efs-dynamic-demo
     project: roboshop
 spec:
-  type: LoadBalancer 
-  selector: 
+  type: LoadBalancer
+  selector:
     purpose: efs-dynamic-demo
     project: roboshop
   ports:
-    - protocol: TCP 
-      port: 80 
-      targetPort: 80
+    - protocol: TCP
+      port: 80 # service port
+      targetPort: 80 # container port
