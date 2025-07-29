@@ -1,11 +1,23 @@
+# kind: StorageClass
+# apiVersion: storage.k8s.io/v1
+# metadata: 
+#   name: efs-roboshop
+# provisioner: efs.csi.aws.com
+# reclaimPolicy: Retain
+# parameters:
+#   provisioningMode: efs-ap
+#   fileSystemId: fs-008705f430dd731d3
+#   directoryPerms: "700"
+#   basePath: "/roboshop" # ela estey /roboshop/cart like ela vastundhi 
+
 kind: StorageClass
 apiVersion: storage.k8s.io/v1
-metadata: 
+metadata:
   name: efs-roboshop
 provisioner: efs.csi.aws.com
-reclaimPolicy: Retain
+reclaimPolicy: Retain 
 parameters:
   provisioningMode: efs-ap
   fileSystemId: fs-008705f430dd731d3
   directoryPerms: "700"
-  basePath: "/roboshop" # ela estey /roboshop/cart like ela vastundhi 
+  basePath: "/roboshop" # /roboshop/cart
